@@ -1,3 +1,6 @@
+
+import addTasks from "./addTasks.js";
+import app, { database } from "./fireBaseConfig.js";
 import { openModal, closeModal } from "./modal.js";
 
 // Selecting DOM elements 
@@ -9,7 +12,7 @@ const titleInput = document.querySelector(".form__title-input");
 const dateInput = document.querySelector(".form__date-input");
 const timeInput = document.querySelector(".form__time-input");
 const categorySelect = document.querySelector(".form__category-select");
-const prioritySelect = document.querySelector(".form__prioroty-select");
+const prioritySelect = document.querySelector(".form__priority-select");
 const openChartButton = document.querySelector(".tools__button--chart");
 const filterSelect = document.querySelector(".tools__filter-month");
 const submitButton = document.querySelector(".form__submit-button");
@@ -20,4 +23,17 @@ const formSubmissionFeedback = document.querySelector(".form__submission-feedbac
 document.addEventListener("DOMContentLoaded", () => {
     openModal(formModal, openModalButton); 
     closeModal(formModal, closeModalButton); 
+});
+
+
+form.addEventListener("submit", (e)=> {
+    e.preventDefault(); 
+    addTasks(
+        titleInput.value, 
+        dateInput.value,
+        timeInput.value,
+        categorySelect.value,
+        prioritySelect.value
+    
+    ); 
 });
